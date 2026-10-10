@@ -1,0 +1,382 @@
+const fs = require('fs');
+const path = require('path');
+const mysql = require('mysql2/promise');
+require('dotenv').config();
+
+const DATA_DIR = path.join(__dirname, '..', 'data');
+const JSON_DB_PATH = path.join(DATA_DIR, 'digipulse_store.json');
+
+// Ensure data directory exists
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+}
+
+// Initial seed data generator for JSON fallback
+function getInitialSeedData() {
+  return {
+    users: [
+      {
+        id: 1,
+        full_name: "Mark Wilson Allado",
+        email: "markwilsonquintoallado@gmail.com",
+        password_hash: "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy", // password123
+        role: "user",
+        status: "active",
+        created_at: new Date(Date.now() - 30 * 86400000).toISOString()
+      },
+      {
+        id: 2,
+        full_name: "Dr. Apple Joy Ariola",
+        email: "adminapplejoyariola@gmail.com",
+        password_hash: "$2a$10$wTkyrQ7P03YfZzIicpY7b.F98rRrkRzY7xY23P6fFp77oIbmZ/k4m", // admin123
+        role: "admin",
+        status: "active",
+        created_at: new Date(Date.now() - 60 * 86400000).toISOString()
+      }
+    ],
+    profiles: [
+      {
+        id: 1,
+        user_id: 1,
+        avatar_url: "",
+        age: 32,
+        sex: "male",
+        height_cm: 178.0,
+        weight_kg: 74.5,
+        blood_type: "O+",
+        emergency_contact_name: "Jane Williams",
+        emergency_contact_phone: "+1 (555) 234-5678",
+        emergency_contact_relation: "Spouse",
+        health_goals: "Lower resting heart rate, maintain optimal blood pressure, drink 2.5L water daily, reach 10,000 steps.",
+        target_weight_kg: 72.0,
+        target_water_ml: 2500,
+        target_steps: 10000,
+        target_sleep_hours: 8.0,
+        updated_at: new Date().toISOString()
+      },
+      {
+        id: 2,
+        user_id: 2,
+        avatar_url: "",
+        age: 40,
+        sex: "female",
+        height_cm: 165.0,
+        weight_kg: 58.0,
+        blood_type: "A+",
+        emergency_contact_name: "Robert Mitchell",
+        emergency_contact_phone: "+1 (555) 890-1234",
+        emergency_contact_relation: "Spouse",
+        health_goals: "Daily cardio, stress management, balanced Mediterranean diet.",
+        target_weight_kg: 58.0,
+        target_water_ml: 2200,
+        target_steps: 9000,
+        target_sleep_hours: 7.5,
+        updated_at: new Date().toISOString()
+      }
+    ],
+    bmi_records: [
+      { id: 1, user_id: 1, height_cm: 178.0, weight_kg: 77.0, bmi_value: 24.30, category: "Normal", bmr_value: 1740, body_fat_pct: 18.2, waist_to_height: 0.46, nutritional_status: "Normal Weight", recorded_at: new Date(Date.now() - 21 * 86400000).toISOString() },
+      { id: 2, user_id: 1, height_cm: 178.0, weight_kg: 76.2, bmi_value: 24.05, category: "Normal", bmr_value: 1730, body_fat_pct: 17.8, waist_to_height: 0.45, nutritional_status: "Normal Weight", recorded_at: new Date(Date.now() - 14 * 86400000).toISOString() },
+      { id: 3, user_id: 1, height_cm: 178.0, weight_kg: 75.3, bmi_value: 23.77, category: "Normal", bmr_value: 1720, body_fat_pct: 17.4, waist_to_height: 0.45, nutritional_status: "Normal Weight", recorded_at: new Date(Date.now() - 7 * 86400000).toISOString() },
+      { id: 4, user_id: 1, height_cm: 178.0, weight_kg: 74.5, bmi_value: 23.51, category: "Normal", bmr_value: 1710, body_fat_pct: 17.1, waist_to_height: 0.44, nutritional_status: "Normal Weight", recorded_at: new Date().toISOString() }
+    ],
+    blood_pressure_records: [
+      { id: 1, user_id: 1, systolic: 126, diastolic: 82, pulse: 74, category: "Hypertension Stage 1", notes: "Morning check before coffee", recorded_at: new Date(Date.now() - 14 * 86400000).toISOString() },
+      { id: 2, user_id: 1, systolic: 122, diastolic: 80, pulse: 71, category: "Elevated", notes: "Evening reading, relaxed", recorded_at: new Date(Date.now() - 10 * 86400000).toISOString() },
+      { id: 3, user_id: 1, systolic: 119, diastolic: 78, pulse: 68, category: "Normal", notes: "Post 30-min walk", recorded_at: new Date(Date.now() - 5 * 86400000).toISOString() },
+      { id: 4, user_id: 1, systolic: 118, diastolic: 77, pulse: 72, category: "Normal", notes: "Morning resting measurement", recorded_at: new Date(Date.now() - 2 * 86400000).toISOString() },
+      { id: 5, user_id: 1, systolic: 116, diastolic: 75, pulse: 70, category: "Normal", notes: "Optimal hydration and calm", recorded_at: new Date().toISOString() }
+    ],
+    heart_rate_records: [
+      { id: 1, user_id: 1, heart_rate: 74, category: "Normal", context: "Resting", notes: "Morning baseline", recorded_at: new Date(Date.now() - 7 * 86400000).toISOString() },
+      { id: 2, user_id: 1, heart_rate: 68, category: "Normal", context: "Resting", notes: "Post-meditation calm", recorded_at: new Date(Date.now() - 4 * 86400000).toISOString() },
+      { id: 3, user_id: 1, heart_rate: 71, category: "Normal", context: "Resting", notes: "Midday rest", recorded_at: new Date(Date.now() - 2 * 86400000).toISOString() },
+      { id: 4, user_id: 1, heart_rate: 69, category: "Normal", context: "Resting", notes: "Woke up naturally", recorded_at: new Date().toISOString() }
+    ],
+    weight_records: [
+      { id: 1, user_id: 1, weight_kg: 77.0, notes: "Starting log for Q4", recorded_at: new Date(Date.now() - 28 * 86400000).toISOString() },
+      { id: 2, user_id: 1, weight_kg: 76.2, notes: "Switched to whole grains", recorded_at: new Date(Date.now() - 21 * 86400000).toISOString() },
+      { id: 3, user_id: 1, weight_kg: 75.8, notes: "Increased water intake", recorded_at: new Date(Date.now() - 14 * 86400000).toISOString() },
+      { id: 4, user_id: 1, weight_kg: 75.1, notes: "Consistent 10k steps", recorded_at: new Date(Date.now() - 7 * 86400000).toISOString() },
+      { id: 5, user_id: 1, weight_kg: 74.5, notes: "Current check-in", recorded_at: new Date().toISOString() }
+    ],
+    water_intake_records: [
+      { id: 1, user_id: 1, amount_ml: 2000, glasses: 8, recorded_date: new Date(Date.now() - 6 * 86400000).toISOString().split('T')[0] },
+      { id: 2, user_id: 1, amount_ml: 2250, glasses: 9, recorded_date: new Date(Date.now() - 5 * 86400000).toISOString().split('T')[0] },
+      { id: 3, user_id: 1, amount_ml: 2500, glasses: 10, recorded_date: new Date(Date.now() - 4 * 86400000).toISOString().split('T')[0] },
+      { id: 4, user_id: 1, amount_ml: 1750, glasses: 7, recorded_date: new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0] },
+      { id: 5, user_id: 1, amount_ml: 2500, glasses: 10, recorded_date: new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0] },
+      { id: 6, user_id: 1, amount_ml: 2750, glasses: 11, recorded_date: new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0] },
+      { id: 7, user_id: 1, amount_ml: 2000, glasses: 8, recorded_date: new Date().toISOString().split('T')[0] }
+    ],
+    sleep_records: [
+      { id: 1, user_id: 1, sleep_hours: 7.2, sleep_quality: "Good", bedtime: "23:00", wake_time: "06:12", notes: "Slept through the night", recorded_date: new Date(Date.now() - 4 * 86400000).toISOString().split('T')[0] },
+      { id: 2, user_id: 1, sleep_hours: 6.8, sleep_quality: "Fair", bedtime: "23:30", wake_time: "06:18", notes: "Woke up once to drink water", recorded_date: new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0] },
+      { id: 3, user_id: 1, sleep_hours: 8.1, sleep_quality: "Excellent", bedtime: "22:45", wake_time: "06:51", notes: "Very restorative sleep", recorded_date: new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0] },
+      { id: 4, user_id: 1, sleep_hours: 7.5, sleep_quality: "Good", bedtime: "23:10", wake_time: "06:40", notes: "No blue light 1h before bed", recorded_date: new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0] },
+      { id: 5, user_id: 1, sleep_hours: 7.8, sleep_quality: "Excellent", bedtime: "22:50", wake_time: "06:38", notes: "Optimal sleep score", recorded_date: new Date().toISOString().split('T')[0] }
+    ],
+    activity_records: [
+      { id: 1, user_id: 1, activity_type: "Walking & Jogging", steps: 8650, active_minutes: 42, calories_burned: 410, recorded_date: new Date(Date.now() - 4 * 86400000).toISOString().split('T')[0] },
+      { id: 2, user_id: 1, activity_type: "Gym & Cardio", steps: 10420, active_minutes: 55, calories_burned: 520, recorded_date: new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0] },
+      { id: 3, user_id: 1, activity_type: "Brisk Walking", steps: 7890, active_minutes: 35, calories_burned: 360, recorded_date: new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0] },
+      { id: 4, user_id: 1, activity_type: "HIIT & Stretch", steps: 11200, active_minutes: 60, calories_burned: 580, recorded_date: new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0] },
+      { id: 5, user_id: 1, activity_type: "Daily Walking", steps: 8420, active_minutes: 45, calories_burned: 430, recorded_date: new Date().toISOString().split('T')[0] }
+    ],
+    health_risk_assessments: [
+      { id: 1, user_id: 1, assessment_type: "Diabetes Risk", risk_score: 3, risk_level: "Low", recommendations: "Your diabetes risk score is low. Maintain current physical activity levels, prioritize whole dietary fiber, and conduct annual routine checkups.", assessed_at: new Date(Date.now() - 10 * 86400000).toISOString() },
+      { id: 2, user_id: 1, assessment_type: "Heart Disease Risk", risk_score: 4, risk_level: "Low", recommendations: "Low risk. Continue routine aerobic exercise, maintain optimal blood pressure beneath 120/80 mmHg, and sustain non-smoking habits.", assessed_at: new Date(Date.now() - 10 * 86400000).toISOString() },
+      { id: 3, user_id: 1, assessment_type: "Hypertension Risk", risk_score: 2, risk_level: "Low", recommendations: "Maintain current sodium moderation, adequate potassium intake (leafy greens, bananas), and regular cardiovascular workouts.", assessed_at: new Date(Date.now() - 10 * 86400000).toISOString() },
+      { id: 4, user_id: 1, assessment_type: "Lifestyle Risk", risk_score: 3, risk_level: "Low", recommendations: "Excellent balanced routine. Continue your structured sleep habits and hydration goals.", assessed_at: new Date(Date.now() - 5 * 86400000).toISOString() }
+    ],
+    daily_tips: [
+      { id: 1, tip_text: "Start your morning with a large glass of water to kickstart your metabolism and restore hydration after sleep.", category: "Hydration", icon: "droplet" },
+      { id: 2, tip_text: "The 20-20-20 rule helps alleviate eye strain: every 20 minutes, look at an object 20 feet away for 20 seconds.", category: "Ergonomics", icon: "eye" },
+      { id: 3, tip_text: "Limiting sodium intake to less than 2,000 mg daily significantly reduces arterial pressure and heart strain.", category: "Cardiovascular", icon: "heart" },
+      { id: 4, tip_text: "Aim for 150 minutes of moderate-intensity aerobic physical activity throughout each week for cellular longevity.", category: "Fitness", icon: "activity" },
+      { id: 5, tip_text: "Consistent sleep schedules regulate your circadian rhythm, dramatically improving restorative deep REM phases.", category: "Sleep", icon: "moon" },
+      { id: 6, tip_text: "Incorporate colorful vegetables into every meal; phytonutrients bolster cellular repair and immune defense.", category: "Nutrition", icon: "salad" },
+      { id: 7, tip_text: "Practicing 5 minutes of box breathing (4s in, 4s hold, 4s out, 4s hold) lowers sympathetic cortisol spikes.", category: "Mental Wellness", icon: "wind" }
+    ],
+    health_articles: [
+      {
+        id: 1,
+        title: "Mastering Micronutrients: Fueling Your Body for Peak Vitality",
+        slug: "mastering-micronutrients",
+        category: "Nutrition",
+        description: "Understand the essential vitamins and minerals your body requires for optimal cellular function, energy production, and longevity.",
+        content: `### The Foundation of Vitality\n\nWhile carbohydrates, proteins, and fats supply the macronutrient fuel for energy and structural repair, **micronutrients**—vitamins and minerals—act as the biochemical spark plugs powering every metabolic cascade.\n\n#### Key Micronutrient Pillars\n- **Vitamin D3 & K2**: Crucial for bone mineralization and cardiovascular arterial elasticity.\n- **Magnesium (Glycinate/Citrate)**: Required in over 300 enzymatic reactions, regulating muscle relaxation, neurotransmitter balance, and circadian sleep.\n- **Iron & Zinc**: Essential for oxygen transport in hemoglobin and immune cellular proliferation.\n\n#### Practical Nutrition Strategies\n1. Aim for a "rainbow plate" with at least three vibrant plant colors per main meal.\n2. Incorporate fermented foods (kefir, kimchi, unsweetened yogurt) to cultivate a diverse microbiome.\n3. Minimize ultra-processed foods rich in refined sugars and oxidized seed oils.`,
+        image_url: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80",
+        references_sources: "Harvard T.H. Chan School of Public Health; WHO Nutritional Guidelines",
+        read_time_mins: 5,
+        author: "Dr. Sarah Mitchell, MD",
+        is_published: 1,
+        created_at: new Date(Date.now() - 15 * 86400000).toISOString()
+      },
+      {
+        id: 2,
+        title: "Cardiovascular Fitness: Why Heart Rate Variability Matters",
+        slug: "cardiovascular-fitness-hrv",
+        category: "Exercise",
+        description: "Discover how monitoring your resting heart rate and aerobic capacity transforms longevity and cardiovascular resilience.",
+        content: `### The Aerobic Engine\n\nCardiorespiratory fitness is one of the most potent clinical predictors of all-cause mortality. Sustaining high cardiovascular output improves mitochondrial density and endothelial function.\n\n#### Zone 2 Training Explained\nZone 2 training represents an aerobic intensity where your body primarily metabolizes fatty acids for energy while clearing lactate as fast as it is produced. You should comfortably speak in complete sentences.\n\n- **Recommended Dose**: 3 to 4 sessions per week of 30-45 minutes.\n- **Resting Heart Rate Benchmarks**: Athletic individuals often observe resting values between 45-58 bpm; a healthy adult range spans 60-80 bpm.`,
+        image_url: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
+        references_sources: "American College of Cardiology (ACC); Journal of Sports Medicine",
+        read_time_mins: 6,
+        author: "DigiPulse Sports Science Board",
+        is_published: 1,
+        created_at: new Date(Date.now() - 12 * 86400000).toISOString()
+      },
+      {
+        id: 3,
+        title: "Stress Resilience and the Vagus Nerve: Science of Calm",
+        slug: "stress-resilience-vagus-nerve",
+        category: "Mental Wellness",
+        description: "Learn evidence-based neurobiological techniques to downregulate sympathetic fight-or-flight triggers.",
+        content: `### The Autonomic Balance\n\nChronic psychological distress triggers sustained cortisol and epinephrine secretion, elevating blood pressure and promoting low-grade systemic inflammation.\n\n#### Activating the Parasympathetic System\n- **Coherent Breathing**: Inhale slowly for 5.5 seconds, exhale smoothly for 5.5 seconds. This stabilizes the baroreflex and amplifies heart rate variability.\n- **Cold Water Splash**: Stimulates the diving reflex, slowing bradycardic response and steadying pulse.\n- **Cognitive Reframing**: Journaling daily gratitude prompts shifts neural activation from the amygdala to the prefrontal cortex.`,
+        image_url: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80",
+        references_sources: "Stanford Neurobiology; American Psychological Association",
+        read_time_mins: 4,
+        author: "Elena Vance, MSc Neuropsychology",
+        is_published: 1,
+        created_at: new Date(Date.now() - 10 * 86400000).toISOString()
+      },
+      {
+        id: 4,
+        title: "Essential First Aid: Rapid Response for Common Emergencies",
+        slug: "essential-first-aid-guide",
+        category: "First Aid",
+        description: "A crucial guide to recognizing and responding to choking, severe bleeding, burns, and cardiovascular arrest.",
+        content: `### Time is Life in Clinical Emergencies\n\nPrompt, correct intervention during the initial minutes of an acute medical crisis drastically increases survival rates.\n\n#### 1. Suspected Cardiac Arrest (Hands-Only CPR)\n- Immediately call emergency services (911 / 112 / 999).\n- Place hands on the center of the chest.\n- Push hard and fast at a cadence of 100-120 beats per minute (to the rhythm of "Stayin Alive").\n\n#### 2. Severe Bleeding\n- Apply direct, firm, continuous pressure with a sterile dressing or clean cloth.\n- Elevate above heart level if no fracture is present.\n\n#### 3. Burns\n- Cool under cold running water for at least 10 minutes. Avoid applying ice, butter, or oil.`,
+        image_url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+        references_sources: "American Heart Association (AHA); International Red Cross",
+        read_time_mins: 7,
+        author: "Dr. Robert Chen, Emergency Medicine",
+        is_published: 1,
+        created_at: new Date(Date.now() - 8 * 86400000).toISOString()
+      },
+      {
+        id: 5,
+        title: "Circadian Hygiene: Rebuilding Your Sleep Architecture",
+        slug: "circadian-hygiene-sleep",
+        category: "Healthy Lifestyle",
+        description: "Master light exposure, temperature protocols, and timing to achieve restorative non-REM and REM sleep.",
+        content: `### Sleep: The Ultimate Regenerative Cycle\n\nDuring deep slow-wave sleep, the brain activates the glymphatic system, clearing metabolic waste including beta-amyloid proteins.\n\n#### Daily Sleep Protocol\n1. **Morning Sunlight**: Expose eyes to outdoor natural light for 10-15 minutes within an hour of waking to anchor the cortisol spike.\n2. **Avoid Evening Caffeine**: Caffeine has a half-life of 5-7 hours; avoid stimulants after 2:00 PM.\n3. **Optimal Thermal Environment**: Keep the bedroom cool (around 18-20°C / 65-68°F).\n4. **Darkness**: Eliminate LEDs and light pollution to stimulate natural melatonin synthesis.`,
+        image_url: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80",
+        references_sources: "Sleep Research Society; National Sleep Foundation",
+        read_time_mins: 5,
+        author: "DigiPulse Sleep Lab",
+        is_published: 1,
+        created_at: new Date(Date.now() - 6 * 86400000).toISOString()
+      },
+      {
+        id: 6,
+        title: "Preventing Type 2 Diabetes: Blood Glucose Optimization",
+        slug: "preventing-diabetes-glucose",
+        category: "Disease Prevention",
+        description: "Proven strategies for preserving insulin sensitivity and mitigating metabolic syndrome risks.",
+        content: `### Understanding Insulin Sensitivity\n\nType 2 diabetes develops over years through progressive peripheral insulin resistance. Early detection and proactive lifestyle intervention can reverse prediabetes.\n\n#### Key Preventative Interventions\n- **Postprandial Movement**: A light 10-minute walk after meals stimulates GLUT4 glucose transporters in muscle tissue without requiring excess insulin.\n- **Fiber First**: Eating vegetables and proteins before carbohydrates blunts glucose spikes.\n- **Waist Circumference Monitoring**: Visceral abdominal fat directly secretes inflammatory adipokines that impair insulin receptors.`,
+        image_url: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=800&q=80",
+        references_sources: "American Diabetes Association (ADA); Lancet Diabetes & Endocrinology",
+        read_time_mins: 6,
+        author: "Dr. Sarah Mitchell, MD",
+        is_published: 1,
+        created_at: new Date(Date.now() - 4 * 86400000).toISOString()
+      },
+      {
+        id: 7,
+        title: "Understanding Blood Pressure: The Silent Indicator",
+        slug: "understanding-blood-pressure",
+        category: "Blood Pressure Information",
+        description: "Decode systolic vs diastolic readings, hypertensive thresholds, and actionable steps to maintain arterial health.",
+        content: `### What Do the Numbers Really Mean?\n\nBlood pressure is expressed as two numbers in millimeters of mercury (mmHg):\n- **Systolic (Top Number)**: The pressure exerted against arterial walls during ventricular contraction.\n- **Diastolic (Bottom Number)**: The pressure inside arteries when the cardiac muscle rests between beats.\n\n#### AHA Classification Standard\n- **Normal**: Systolic < 120 and Diastolic < 80 mmHg\n- **Elevated**: Systolic 120–129 and Diastolic < 80 mmHg\n- **Stage 1 Hypertension**: Systolic 130–139 or Diastolic 80–89 mmHg\n- **Stage 2 Hypertension**: Systolic 140+ or Diastolic 90+ mmHg\n- **Hypertensive Crisis**: Systolic > 180 and/or Diastolic > 120 mmHg (Seek immediate emergency care!)\n\n#### How to Measure Accurately\n- Sit quietly for 5 minutes before reading.\n- Keep feet flat on the floor; support arm at heart level.\n- Avoid nicotine, caffeine, or exercise for 30 minutes prior.`,
+        image_url: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80",
+        references_sources: "American Heart Association (AHA); European Society of Cardiology",
+        read_time_mins: 5,
+        author: "Dr. Sarah Mitchell, MD",
+        is_published: 1,
+        created_at: new Date(Date.now() - 2 * 86400000).toISOString()
+      },
+      {
+        id: 8,
+        title: "Demystifying BMI: Strengths, Limitations, and Better Metrics",
+        slug: "demystifying-bmi-metrics",
+        category: "BMI Information",
+        description: "Explore how Body Mass Index works, where it succeeds as a population metric, and how WHtR complements it.",
+        content: `### What is BMI?\n\nBody Mass Index (BMI) is calculated as weight in kilograms divided by the square of height in meters (kg/m²). It categorizes weight status into Underweight (<18.5), Normal (18.5–24.9), Overweight (25.0–29.9), and Obese (≥30.0).\n\n#### Strengths and Limitations\n- **Strengths**: Inexpensive, non-invasive, universally standardized, and correlates well with chronic cardiovascular risk in large populations.\n- **Limitations**: Cannot differentiate between skeletal muscle and visceral adipose tissue. Highly athletic individuals may register as "overweight" despite low body fat.\n\n#### The Solution: Multi-Metric Assessment\nCombine BMI with **Waist-to-Height Ratio (WHtR)** and **Basal Metabolic Rate (BMR)** for a complete metabolic blueprint. A waist-to-height ratio under 0.50 signifies low cardiometabolic risk.`,
+        image_url: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80",
+        references_sources: "World Health Organization (WHO); CDC Division of Nutrition",
+        read_time_mins: 5,
+        author: "DigiPulse Medical Editorial Board",
+        is_published: 1,
+        created_at: new Date().toISOString()
+      }
+    ],
+    notifications: [
+      { id: 1, user_id: 1, type: "Water", title: "Hydration Reminder", message: "Time for a fresh glass of water! You are 500ml away from reaching your daily 2,500ml target.", is_read: 0, scheduled_time: "14:00", created_at: new Date().toISOString() },
+      { id: 2, user_id: 1, type: "Exercise", title: "Step Count Motivation", message: "You have achieved 8,420 steps today! Just 1,580 more steps to complete your 10,000 daily goal.", is_read: 0, scheduled_time: "17:30", created_at: new Date().toISOString() },
+      { id: 3, user_id: 1, type: "Blood Pressure", title: "Evening BP Check", message: "Remember to log your resting blood pressure in a calm seated position.", is_read: 1, scheduled_time: "20:00", created_at: new Date(Date.now() - 86400000).toISOString() }
+    ]
+  };
+}
+
+class DatabaseService {
+  constructor() {
+    this.driver = 'json'; // 'mysql' or 'json'
+    this.pool = null;
+    this.store = null;
+    this.init();
+  }
+
+  async init() {
+    // Check if MySQL environment credentials provided
+    const host = process.env.DB_HOST || 'localhost';
+    const user = process.env.DB_USER || 'root';
+    const password = process.env.DB_PASS || '';
+    const database = process.env.DB_NAME || 'digipulse_db';
+    const enableMySQL = process.env.ENABLE_MYSQL === 'true';
+
+    if (enableMySQL) {
+      try {
+        this.pool = mysql.createPool({
+          host,
+          user,
+          password,
+          database,
+          waitForConnections: true,
+          connectionLimit: 10,
+          queueLimit: 0
+        });
+        // Test connection
+        const conn = await this.pool.getConnection();
+        conn.release();
+        this.driver = 'mysql';
+        console.log(`[DigiPulse DB] Connected successfully to MySQL (${database})`);
+        return;
+      } catch (err) {
+        console.warn(`[DigiPulse DB] MySQL connection not active (${err.message}). Using integrated persistent JSON store.`);
+      }
+    }
+
+    // Default or Fallback: JSON File Store
+    this.driver = 'json';
+    if (!fs.existsSync(JSON_DB_PATH)) {
+      this.store = getInitialSeedData();
+      this.saveStore();
+    } else {
+      try {
+        const raw = fs.readFileSync(JSON_DB_PATH, 'utf8');
+        this.store = JSON.parse(raw);
+      } catch (e) {
+        console.error('Corrupted db json, resetting to seeds:', e);
+        this.store = getInitialSeedData();
+        this.saveStore();
+      }
+    }
+    console.log(`[DigiPulse DB] Active storage: Embedded JSON store (${JSON_DB_PATH})`);
+  }
+
+  saveStore() {
+    try {
+      fs.writeFileSync(JSON_DB_PATH, JSON.stringify(this.store, null, 2), 'utf8');
+    } catch (err) {
+      console.error('Failed to persist store:', err);
+    }
+  }
+
+  // Generic Query / Helper Methods
+  getTable(tableName) {
+    if (!this.store[tableName]) {
+      this.store[tableName] = [];
+    }
+    return this.store[tableName];
+  }
+
+  find(tableName, predicate) {
+    const table = this.getTable(tableName);
+    return table.filter(predicate);
+  }
+
+  findOne(tableName, predicate) {
+    const table = this.getTable(tableName);
+    return table.find(predicate);
+  }
+
+  insert(tableName, item) {
+    const table = this.getTable(tableName);
+    const newId = table.length > 0 ? Math.max(...table.map(t => t.id || 0)) + 1 : 1;
+    const record = {
+      id: newId,
+      ...item,
+      created_at: item.created_at || new Date().toISOString()
+    };
+    table.push(record);
+    this.saveStore();
+    return record;
+  }
+
+  update(tableName, id, updates) {
+    const table = this.getTable(tableName);
+    const index = table.findIndex(t => t.id === Number(id));
+    if (index === -1) return null;
+    table[index] = {
+      ...table[index],
+      ...updates,
+      updated_at: new Date().toISOString()
+    };
+    this.saveStore();
+    return table[index];
+  }
+
+  delete(tableName, id) {
+    const table = this.getTable(tableName);
+    const index = table.findIndex(t => t.id === Number(id));
+    if (index === -1) return false;
+    table.splice(index, 1);
+    this.saveStore();
+    return true;
+  }
+}
+
+const db = new DatabaseService();
+module.exports = db;

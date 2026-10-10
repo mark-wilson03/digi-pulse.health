@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DIGIPULSE - Your Digital Partner for Better Health </title>
+  <meta name="description" content="DIGIPULSE is a modern, comprehensive health and wellness platform for vital tracking, clinical assessments, risk screening, and medical education.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0284c7">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Chart.js for Interactive Health Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- ========================================================
+       AUTH ENTRY PORTAL (Before Entering Website Application)
+       ======================================================== -->
+  <div id="authPortalScreen" class="auth-portal-screen">
+    <!-- Ambient Dynamic Glow Circles -->
+    <div class="auth-portal-bg-decor">
+      <div class="glow-circle-1"></div>
+      <div class="glow-circle-2"></div>
+    </div>
+
+    <!-- Top Branding & Mode Toggle Bar -->
+    <header class="auth-portal-top-bar">
+      <div class="brand-wrapper">
+        <div class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div class="brand-text-wrap">
+          <h1>DIGIPULSE <span style="font-size:0.9rem; color:var(--accent-500); font-weight:800;">+</span></h1>
+          <span data-i18n="tagline">Your Digital Partner for Better Health</span>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button class="action-icon-btn" onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Center Card Container -->
+    <main class="auth-portal-wrapper">
+      <div class="auth-portal-card fade-in">
+        <!-- Left Showcase Panel -->
+        <div class="auth-portal-showcase">
+          <div>
+            <div class="auth-showcase-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              <span>Clinical Health Portal</span>
+            </div>
+            <h2 class="auth-showcase-title">Your Digital Partner for Better Health.</h2>
+            <p class="auth-showcase-desc">
+              Log in or register to access clinical vital tracking, validated cardiovascular screening, body composition analytics, and evidence-based medicine.
+            </p>
+
+            <div class="auth-feature-list">
+              <div class="auth-feature-item">
+                <div class="auth-feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <div class="auth-feature-text">
+                  <h4>Daily Vital Tracking</h4>
+                  <p>Continuous monitoring for blood pressure, resting heart rate, hydration, and weight trends.</p>
+                </div>
+              </div>
+
+              <div class="auth-feature-item">
+                <div class="auth-feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"></path></svg>
+                </div>
+                <div class="auth-feature-text">
+                  <h4>Evidence-Based Risk Calculators</h4>
+                  <p>Clinical assessments for Diabetes, Hypertension, and Cardiovascular health.</p>
+                </div>
+              </div>
+
+              <div class="auth-feature-item">
+                <div class="auth-feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="auth-feature-text">
+                  <h4>HIPAA & GDPR Compliant</h4>
+                  <p>End-to-end encrypted medical data privacy with secure local and cloud records.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:28px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.15); display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; color:#94a3b8;">
+            <span>DIGIPULSE Medical Technologies</span>
+            <span style="display:flex; align-items:center; gap:6px; color:#34d399;">
+              <span class="pulse-dot" style="width:6px; height:6px;"></span> System Ready
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Form Panel (Sign In & Sign Up) -->
+        <div class="auth-portal-form-panel">
+          <!-- Tab Switcher -->
+          <div class="auth-portal-tabs">
+            <button class="auth-portal-tab-btn active" id="portalTabSignIn" onclick="app.switchAuthTab('signin')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+              <span>Sign In</span>
+            </button>
+            <button class="auth-portal-tab-btn" id="portalTabSignUp" onclick="app.switchAuthTab('signup')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+              <span>Create Account</span>
+            </button>
+          </div>
+
+          <!-- 1. SIGN IN FORM -->
+          <div id="portalSignInContainer">
+            <div class="auth-portal-heading">
+              <h3>Sign In to DigiPulse</h3>
+              <p>Enter your credentials to access your health portal.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); app.login(document.getElementById('portalLoginEmail').value, document.getElementById('portalLoginPass').value, document.getElementById('portalLoginRemember').checked);">
+              <div class="auth-field-group">
+                <label for="portalLoginEmail">Email Address</label>
+                <div class="auth-field-wrap">
+                  <span class="auth-field-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 7 12 13 2 7"/></svg>
+                  </span>
+                  <input type="email" id="portalLoginEmail" class="auth-field-input" placeholder="name@example.com" value="mark@digipulse.health" required>
+                </div>
+              </div>
+
+              <div class="auth-field-group">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                  <label for="portalLoginPass" style="margin-bottom:0;">Password</label>
+                  <a href="#" style="font-size:0.82rem; color:var(--primary-600); text-decoration:none;" onclick="app.switchAuthTab('forgot'); return false;">Forgot Password?</a>
+                </div>
+                <div class="auth-field-wrap">
+                  <span class="auth-field-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  </span>
+                  <input type="password" id="portalLoginPass" class="auth-field-input" placeholder="••••••••" value="password123" required>
+                  <button type="button" class="auth-eye-btn" onclick="const p=document.getElementById('portalLoginPass'); p.type = p.type==='password'?'text':'password';">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div style="display:flex; align-items:center; margin-bottom:18px;">
+                <label style="font-size:0.85rem; display:flex; align-items:center; gap:8px; cursor:pointer;">
+                  <input type="checkbox" id="portalLoginRemember" checked>
+                  <span>Remember my session</span>
+                </label>
+              </div>
+
+              <button type="submit" class="auth-submit-btn">
+                <span>Enter DigiPulse Application</span>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </form>
+
+            <!-- 1-Click Fast Demo Credentials -->
+            <div class="auth-demo-section">
+              <div class="auth-demo-heading">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>Instant 1-Click Demo Access</span>
+              </div>
+              <div class="auth-demo-grid">
+                <button type="button" class="auth-demo-action-btn" onclick="app.demoLogin('mark@digipulse.health', 'password123')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <span>Patient (Mark)</span>
+                </button>
+                <button type="button" class="auth-demo-action-btn" onclick="app.demoLogin('admin@digipulse.health', 'admin123')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Doctor (Dr. Sarah)</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="text-align:center; font-size:0.86rem; color:var(--text-muted); margin-top:20px;">
+              Don't have an account? <a href="#" style="color:var(--primary-600); font-weight:600; text-decoration:none;" onclick="app.switchAuthTab('signup'); return false;">Create one now</a>
+            </div>
+          </div>
+
+          <!-- 2. SIGN UP FORM -->
+          <div id="portalSignUpContainer" style="display:none;">
+            <div class="auth-portal-heading">
+              <h3>Create Your Health Account</h3>
+              <p>Set up your profile to start tracking vitals and health progress.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); app.register(
+              document.getElementById('portalRegName').value,
+              document.getElementById('portalRegEmail').value,
+              document.getElementById('portalRegPass').value,
+              document.getElementById('portalRegConfirmPass').value,
+              document.getElementById('portalRegTerms').checked
+            );">
+              <div class="auth-field-group">
+                <label for="portalRegName">Full Name</label>
+                <div class="auth-field-wrap">
+                  <span class="auth-field-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </span>
+                  <input type="text" id="portalRegName" class="auth-field-input" placeholder="e.g. John Anderson" required>
+                </div>
+              </div>
+
+              <div class="auth-field-group">
+                <label for="portalRegEmail">Email Address</label>
+                <div class="auth-field-wrap">
+                  <span class="auth-field-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 7 12 13 2 7"/></svg>
+                  </span>
+                  <input type="email" id="portalRegEmail" class="auth-field-input" placeholder="john@example.com" required>
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <div class="auth-field-group">
+                  <label for="portalRegPass">Password</label>
+                  <div class="auth-field-wrap">
+                    <span class="auth-field-icon">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </span>
+                    <input type="password" id="portalRegPass" class="auth-field-input" placeholder="••••••••" required>
+                  </div>
+                </div>
+
+                <div class="auth-field-group">
+                  <label for="portalRegConfirmPass">Confirm</label>
+                  <div class="auth-field-wrap">
+                    <span class="auth-field-icon">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </span>
+                    <input type="password" id="portalRegConfirmPass" class="auth-field-input" placeholder="••••••••" required>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:18px;">
+                <label style="font-size:0.83rem; display:flex; align-items:flex-start; gap:8px; cursor:pointer;">
+                  <input type="checkbox" id="portalRegTerms" required style="margin-top:2px;">
+                  <span>I agree to the <a href="#" style="color:var(--primary-600);" onclick="app.openModal('privacyModal'); return false;">Terms of Service & HIPAA Privacy Policy</a></span>
+                </label>
+              </div>
+
+              <button type="submit" class="auth-submit-btn">
+                <span>Create Account & Enter</span>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+            </form>
+
+            <div style="text-align:center; font-size:0.86rem; color:var(--text-muted); margin-top:20px;">
+              Already have an account? <a href="#" style="color:var(--primary-600); font-weight:600; text-decoration:none;" onclick="app.switchAuthTab('signin'); return false;">Sign In</a>
+            </div>
+          </div>
+
+          <!-- 3. FORGOT PASSWORD FORM -->
+          <div id="portalForgotContainer" style="display:none;">
+            <div class="auth-portal-heading">
+              <h3>Reset Your Password</h3>
+              <p>We'll dispatch password recovery steps directly to your verified inbox.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); app.showToast('Password reset link has been dispatched to your email.', 'success'); app.switchAuthTab('signin');">
+              <div class="auth-field-group">
+                <label for="portalForgotEmail">Registered Email</label>
+                <div class="auth-field-wrap">
+                  <span class="auth-field-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 7 12 13 2 7"/></svg>
+                  </span>
+                  <input type="email" id="portalForgotEmail" class="auth-field-input" placeholder="name@example.com" required>
+                </div>
+              </div>
+
+              <button type="submit" class="auth-submit-btn">
+                <span>Send Reset Link</span>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+
+              <button type="button" class="btn-secondary" style="width:100%; margin-top:10px; padding:10px;" onclick="app.switchAuthTab('signin')">
+                Back to Sign In
+              </button>
+            </form>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="auth-trust-badges">
+            <div class="auth-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>256-Bit SSL</span>
+            </div>
+            <div class="auth-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>HIPAA Aligned</span>
+            </div>
+            <div class="auth-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              <span>Clinical Grade</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ========================================================
+       MAIN APPLICATION SHELL (Visible only after login)
+       ======================================================== -->
+  <div id="mainAppShell" class="main-app-shell" style="display:none;">
+
+    <!-- ========================================================
+         TOP HEADER (Desktop & Mobile Header)
+         ======================================================== -->
+    <header class="desktop-header">
+      <a href="#" class="brand-wrapper" onclick="app.switchView('home'); return false;">
+        <div class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div class="brand-text-wrap">
+          <h1>DIGIPULSE <span style="font-size:0.9rem; color:var(--accent-500); font-weight:800;">+</span></h1>
+          <span data-i18n="tagline">Your Digital Partner for Better Health</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="desktop-nav-links">
+        <button class="nav-link-btn active" data-view-target="home" onclick="app.switchView('home')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span data-i18n="nav_home">Home</span>
+        </button>
+        <button class="nav-link-btn" data-view-target="tracker" onclick="app.switchView('tracker')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"></path></svg>
+          <span data-i18n="nav_tracker">Tracker</span>
+        </button>
+        <button class="nav-link-btn" data-view-target="assessments" onclick="app.switchView('assessments')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"></path></svg>
+          <span data-i18n="nav_assessments">Assessments</span>
+        </button>
+        <button class="nav-link-btn" data-view-target="library" onclick="app.switchView('library')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 6h10M6 10h10"></path></svg>
+          <span data-i18n="nav_library">Library</span>
+        </button>
+        <button class="nav-link-btn" data-view-target="profile" onclick="app.switchView('profile')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span data-i18n="nav_profile">Profile</span>
+        </button>
+        <button class="nav-link-btn admin-nav-item" data-view-target="admin" style="display:none;" onclick="app.switchView('admin')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Z"></path><path d="M12 6v6l4 2"></path></svg>
+          <span data-i18n="nav_admin">Admin</span>
+        </button>
+      </nav>
+
+      <!-- Header Actions (Notifications, Theme, User, Logout) -->
+      <div class="header-actions">
+        <button class="action-icon-btn" onclick="app.openNotifications()" title="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+          <span class="badge-dot" id="notifBadgeDot" style="display:none;"></span>
+        </button>
+
+        <button class="action-icon-btn" onclick="app.toggleTheme()" title="Toggle Dark/Light Mode">
+          <svg id="themeToggleIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button class="user-pill-btn" onclick="app.user ? app.switchView('profile') : app.showAuthPortal('signin')">
+          <div class="user-avatar-sm" id="headerUserInitials">MW</div>
+          <span class="user-name-label" id="headerUserName">Mark Williams</span>
+        </button>
+
+        <button class="action-icon-btn" onclick="app.logout()" title="Sign Out of DIGIPULSE" aria-label="Sign Out">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+  <!-- ========================================================
+       MAIN APP CONTAINER (SPA Panels)
+       ======================================================== -->
+  <div class="app-container">
+    <main class="main-wrapper">
+
+      <!-- ====================================================
+           1. VIEW: DASHBOARD (HOME PAGE)
+           ==================================================== -->
+      <section class="view-panel active" id="view-home">
+        <!-- Welcome Hero Section -->
+        <div class="welcome-hero">
+          <div class="hero-content">
+            <div class="hero-greeting">
+              <h2><span data-i18n="welcome_back">Welcome back</span>, <span id="dashboardUserGreeting">Mark Williams</span>!</h2>
+              <div class="hero-datetime">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span id="liveClockDate">Loading date...</span> • <strong id="liveClockTime" style="color:var(--primary-600);">--:--:--</strong>
+              </div>
+            </div>
+            <div class="hero-vital-pulse">
+              <span class="pulse-dot"></span>
+              <span>All Systems Nominal</span>
+            </div>
+          </div>
+
+          <!-- Daily Health Tip Card -->
+          <div class="daily-tip-card">
+            <div class="tip-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8M4.93 4.93l5.66 5.66M2 12h8M4.93 19.07l5.66-5.66M12 22v-8M19.07 19.07l-5.66-5.66M22 12h-8M19.07 4.93l-5.66 5.66"></path></svg>
+            </div>
+            <div class="tip-body">
+              <h4 id="dailyTipCategory">Vitality Tip of the Day</h4>
+              <p id="dailyTipText">Start your morning with a large glass of water to kickstart your metabolism and restore cellular fluid balance.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions Bar -->
+        <div class="section-header">
+          <h3 data-i18n="quick_actions">Quick Actions</h3>
+          <span style="font-size:0.85rem; color:var(--text-muted);">One-click health logging</span>
+        </div>
+        <div class="quick-actions-bar">
+          <button class="quick-action-pill" onclick="app.openModal('bmiModal')">
+            <svg class="pill-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+            <span data-i18n="calc_bmi">Calculate BMI</span>
+          </button>
+          <button class="quick-action-pill" onclick="app.openModal('bpModal')">
+            <svg class="pill-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span data-i18n="log_bp">Record Blood Pressure</span>
+          </button>
+          <button class="quick-action-pill" onclick="app.openModal('weightModal')">
+            <svg class="pill-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <span data-i18n="log_weight">Log Weight</span>
+          </button>
+          <button class="quick-action-pill" onclick="app.addWaterGlass(250)">
+            <svg class="pill-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            <span data-i18n="track_water">+1 Glass Water (250ml)</span>
+          </button>
+          <button class="quick-action-pill" onclick="app.openModal('activityModal')">
+            <svg class="pill-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span data-i18n="track_activity">Activity Tracker</span>
+          </button>
+          <button class="quick-action-pill" onclick="app.generatePdfReport()">
+            <svg class="pill-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Download Medical PDF</span>
+          </button>
+        </div>
+
+        <!-- Health Summary Cards (6 Key Cards) -->
+        <div class="section-header">
+          <h3 data-i18n="health_summary">Health Summary</h3>
+          <button class="btn-secondary" style="padding:6px 14px; font-size:0.85rem;" onclick="app.switchView('tracker')">
+            View Trends &rarr;
+          </button>
+        </div>
+
+        <div class="grid-cards-6">
+          <!-- 1. BMI Status Card -->
+          <div class="health-card" onclick="app.openModal('bmiModal')">
+            <div>
+              <div class="card-top">
+                <div class="card-title-group">
+                  <div class="card-icon-avatar icon-blue">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
+                  </div>
+                  <h4 data-i18n="bmi_status">BMI Status</h4>
+                </div>
+                <span class="status-badge badge-normal" id="cardBmiBadge">Normal</span>
+              </div>
+              <div class="card-value-display">
+                <span class="card-big-num" id="cardBmiValue">23.5</span>
+                <span class="card-unit">kg/m²</span>
+              </div>
+            </div>
+            <div class="card-meta-text">Healthy reference: 18.5 – 24.9</div>
+          </div>
+
+          <!-- 2. Weight Status Card -->
+          <div class="health-card" onclick="app.openModal('weightModal')">
+            <div>
+              <div class="card-top">
+                <div class="card-title-group">
+                  <div class="card-icon-avatar icon-green">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                  </div>
+                  <h4 data-i18n="weight_status">Weight Status</h4>
+                </div>
+                <span class="status-badge badge-normal">Active</span>
+              </div>
+              <div class="card-value-display">
+                <span class="card-big-num" id="cardWeightValue">74.5 kg</span>
+              </div>
+            </div>
+            <div class="card-meta-text" id="cardWeightDiff">+2.5 kg to target (72 kg)</div>
+          </div>
+
+          <!-- 3. Blood Pressure Status Card -->
+          <div class="health-card" onclick="app.openModal('bpModal')">
+            <div>
+              <div class="card-top">
+                <div class="card-title-group">
+                  <div class="card-icon-avatar icon-red">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                  </div>
+                  <h4 data-i18n="blood_pressure">Blood Pressure</h4>
+                </div>
+                <span class="status-badge badge-normal" id="cardBpBadge">Normal</span>
+              </div>
+              <div class="card-value-display">
+                <span class="card-big-num" id="cardBpValue">116/75</span>
+                <span class="card-unit">mmHg</span>
+              </div>
+            </div>
+            <div class="card-meta-text">AHA Standard: &lt;120 / &lt;80 mmHg</div>
+          </div>
+
+          <!-- 4. Heart Rate Status Card -->
+          <div class="health-card" onclick="app.openModal('hrModal')">
+            <div>
+              <div class="card-top">
+                <div class="card-title-group">
+                  <div class="card-icon-avatar icon-purple">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  </div>
+                  <h4 data-i18n="heart_rate">Heart Rate</h4>
+                </div>
+                <span class="status-badge badge-normal" id="cardHrBadge">Normal</span>
+              </div>
+              <div class="card-value-display">
+                <span class="card-big-num" id="cardHrValue">69 bpm</span>
+              </div>
+            </div>
+            <div class="card-meta-text">Resting benchmark: 60 – 100 bpm</div>
+          </div>
+
+          <!-- 5. Water Intake Progress Card -->
+          <div class="health-card" onclick="app.addWaterGlass(250)">
+            <div>
+              <div class="card-top">
+                <div class="card-title-group">
+                  <div class="card-icon-avatar icon-cyan">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                  </div>
+                  <h4 data-i18n="water_intake">Water Intake</h4>
+                </div>
+                <button class="btn-secondary" style="padding:2px 8px; font-size:0.75rem;" onclick="event.stopPropagation(); app.addWaterGlass(250);">+250ml</button>
+              </div>
+              <div class="card-value-display">
+                <span class="card-big-num" style="font-size:1.6rem;" id="cardWaterValue">2,000 / 2,500 mL</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" id="cardWaterBar" style="width: 80%;"></div>
+              </div>
+            </div>
+            <div class="card-meta-text" id="cardWaterPercent" style="margin-top:8px;">80% of daily hydration goal</div>
+          </div>
+
+          <!-- 6. Daily Activity Progress Card -->
+          <div class="health-card" onclick="app.openModal('activityModal')">
+            <div>
+              <div class="card-top">
+                <div class="card-title-group">
+                  <div class="card-icon-avatar icon-amber">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                  </div>
+                  <h4 data-i18n="daily_activity">Daily Activity</h4>
+                </div>
+                <span class="status-badge badge-normal">84%</span>
+              </div>
+              <div class="card-value-display">
+                <span class="card-big-num" style="font-size:1.6rem;" id="cardActivityValue">8,420 steps</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" id="cardActivityBar" style="width: 84%; background:linear-gradient(90deg, #f59e0b, #10b981);"></div>
+              </div>
+            </div>
+            <div class="card-meta-text" id="cardActivityMeta" style="margin-top:8px;">45 mins active • 430 kcal burned</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Trends Chart -->
+        <div class="health-card" style="margin-bottom:24px;">
+          <div class="card-top">
+            <h4>Blood Pressure Stability (7-Day Overview)</h4>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Systolic vs Diastolic</span>
+          </div>
+          <div style="height: 240px; position:relative;">
+            <canvas id="dashBpChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           2. VIEW: HEALTH TRACKER (Tabs for All Indicators)
+           ==================================================== -->
+      <section class="view-panel" id="view-tracker">
+        <div class="section-header">
+          <h2>Health Tracking Hub</h2>
+          <button class="btn-secondary" style="font-size:0.85rem;" onclick="app.downloadHistoryCsv()">
+            Download CSV Export &darr;
+          </button>
+        </div>
+
+        <div class="tabs-container">
+          <div class="tabs-header">
+            <button class="tab-btn active" data-tab-target="tab-bp">Blood Pressure</button>
+            <button class="tab-btn" data-tab-target="tab-water">Water Tracker</button>
+            <button class="tab-btn" data-tab-target="tab-weight">Weight History</button>
+            <button class="tab-btn" data-tab-target="tab-heart">Heart Rate</button>
+            <button class="tab-btn" data-tab-target="tab-sleep">Sleep Tracker</button>
+            <button class="tab-btn" data-tab-target="tab-activity">Activity Tracker</button>
+          </div>
+
+          <!-- TAB: Blood Pressure -->
+          <div class="tab-pane active" id="tab-bp">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+              <div>
+                <h3 style="font-size:1.2rem;">Blood Pressure Monitoring</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Log systolic and diastolic pressures to track cardiovascular stability.</p>
+              </div>
+              <button class="btn-primary" onclick="app.openModal('bpModal')">+ Record BP Reading</button>
+            </div>
+
+            <!-- AHA BP Category Guide -->
+            <div class="bp-category-guide">
+              <div class="bp-guide-item" style="background:rgba(16, 185, 129, 0.15); color:#059669;">Normal (&lt;120 / &lt;80)</div>
+              <div class="bp-guide-item" style="background:rgba(234, 179, 8, 0.15); color:#b45309;">Elevated (120-129 / &lt;80)</div>
+              <div class="bp-guide-item" style="background:rgba(249, 115, 22, 0.15); color:#c2410c;">Stage 1 (130-139 / 80-89)</div>
+              <div class="bp-guide-item" style="background:rgba(220, 38, 38, 0.15); color:#dc2626;">Stage 2 (140+ / 90+)</div>
+              <div class="bp-guide-item" style="background:rgba(239, 68, 68, 0.25); color:#991b1b; font-weight:800;">Crisis (&gt;180 / &gt;120)</div>
+            </div>
+
+            <div class="health-card" style="margin-top:20px;">
+              <h4 style="margin-bottom:12px;">Interactive Blood Pressure Trends (30 Days)</h4>
+              <div style="height:280px; position:relative;">
+                <canvas id="trackerBpChart"></canvas>
+              </div>
+            </div>
+
+            <div class="data-table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date & Time</th>
+                    <th>Reading (mmHg)</th>
+                    <th>Pulse</th>
+                    <th>Classification</th>
+                    <th>Context / Notes</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="bpHistoryTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB: Water Tracker -->
+          <div class="tab-pane" id="tab-water">
+            <div class="water-tracker-visual">
+              <div class="water-bottle-container">
+                <div class="water-bottle-fill" id="waterBottleFill" style="height: 80%;"></div>
+                <div class="water-level-label" id="waterBottleLabel">2000 / 2500 mL</div>
+              </div>
+              <h3 style="margin-bottom:8px;">Daily Hydration Progress</h3>
+              <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:16px;">Target: 2,500 mL (10 glasses daily for cellular vitality)</p>
+              
+              <div class="water-controls-row">
+                <button class="btn-glass" style="display:inline-flex; align-items:center; gap:8px;" onclick="app.addWaterGlass(250)">
+                  <svg class="minimal-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/></svg>
+                  <span>+1 Glass (250 mL)</span>
+                </button>
+                <button class="btn-glass" style="display:inline-flex; align-items:center; gap:8px;" onclick="app.addWaterGlass(500)">
+                  <svg class="minimal-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                  <span>+1 Bottle (500 mL)</span>
+                </button>
+                <button class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;" onclick="app.openModal('waterGoalModal')">
+                  <svg class="minimal-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  <span>Adjust Goal</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="health-card">
+              <h4>Water Intake History (30 Days)</h4>
+              <div style="height:260px; position:relative; margin-top:10px;">
+                <canvas id="trackerWaterChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: Weight History -->
+          <div class="tab-pane" id="tab-weight">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+              <div>
+                <h3 style="font-size:1.2rem;">Weight Management</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Track gradual body mass trends towards your target weight.</p>
+              </div>
+              <button class="btn-primary" onclick="app.openModal('weightModal')">+ Log Weight</button>
+            </div>
+
+            <div class="health-card">
+              <h4>Weight Progress & Goal Trendline</h4>
+              <div style="height:260px; position:relative; margin-top:10px;">
+                <canvas id="trackerWeightChart"></canvas>
+              </div>
+            </div>
+
+            <div class="data-table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Logged Weight</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="weightHistoryTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB: Heart Rate -->
+          <div class="tab-pane" id="tab-heart">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+              <div>
+                <h3 style="font-size:1.2rem;">Resting Heart Rate Monitor</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Resting heart rate reflects autonomic cardiovascular recovery.</p>
+              </div>
+              <button class="btn-primary" onclick="app.openModal('hrModal')">+ Record Heart Rate</button>
+            </div>
+
+            <div class="data-table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date & Time</th>
+                    <th>Heart Rate</th>
+                    <th>Category</th>
+                    <th>Context</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="hrHistoryTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB: Sleep Tracker -->
+          <div class="tab-pane" id="tab-sleep">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+              <div>
+                <h3 style="font-size:1.2rem;">Circadian Sleep Tracker</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Log restorative sleep duration and quality metrics.</p>
+              </div>
+              <button class="btn-primary" onclick="app.openModal('sleepModal')">+ Log Sleep Session</button>
+            </div>
+
+            <div class="health-card">
+              <h4>Sleep Duration & Circadian Regularity</h4>
+              <div style="height:260px; position:relative; margin-top:10px;">
+                <canvas id="trackerSleepChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: Activity Tracker -->
+          <div class="tab-pane" id="tab-activity">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+              <div>
+                <h3 style="font-size:1.2rem;">Physical Activity Tracker</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Record daily steps, workout duration, and active calories.</p>
+              </div>
+              <button class="btn-primary" onclick="app.openModal('activityModal')">+ Log Activity</button>
+            </div>
+
+            <div class="health-card">
+              <h4>Daily Step Count Trends</h4>
+              <div style="height:260px; position:relative; margin-top:10px;">
+                <canvas id="trackerActivityChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           3. VIEW: ASSESSMENTS (Calculators & Risk Screening)
+           ==================================================== -->
+      <section class="view-panel" id="view-assessments">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="assess_title">Clinical Assessments & Calculators</h2>
+            <p style="font-size:0.88rem; color:var(--text-muted);">Accredited biometric calculators and risk screening algorithms.</p>
+          </div>
+        </div>
+
+        <div class="tabs-container">
+          <div class="tabs-header">
+            <button class="tab-btn active" data-tab-target="tab-calc-bmi">BMI Calculator</button>
+            <button class="tab-btn" data-tab-target="tab-calc-bmr">BMR & Calories</button>
+            <button class="tab-btn" data-tab-target="tab-calc-fat">Body Fat %</button>
+            <button class="tab-btn" data-tab-target="tab-calc-whtr">Waist-to-Height</button>
+            <button class="tab-btn" data-tab-target="tab-calc-ideal">Ideal Weight</button>
+            <button class="tab-btn" data-tab-target="tab-calc-nutrition">Nutritional Status</button>
+            <button class="tab-btn" data-tab-target="tab-calc-risk" style="color:var(--danger-500); font-weight:700;">Risk Screening</button>
+          </div>
+
+          <!-- CALCULATOR: BMI -->
+          <div class="tab-pane active" id="tab-calc-bmi">
+            <div class="health-card" style="max-width:640px; margin:0 auto;">
+              <h3 style="margin-bottom:12px;">Body Mass Index (BMI) Calculator</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">Quantifies tissue mass based on height and weight according to WHO guidelines.</p>
+              <form id="calcBmiForm" onsubmit="event.preventDefault(); app.calculateBmi(document.getElementById('bmiInHeight').value, document.getElementById('bmiInWeight').value);">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                  <div class="form-group">
+                    <label class="form-label">Height (cm)</label>
+                    <input type="number" id="bmiInHeight" class="form-control" value="178" step="0.5" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Weight (kg)</label>
+                    <input type="number" id="bmiInWeight" class="form-control" value="74.5" step="0.1" required>
+                  </div>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; margin-top:8px;">Calculate BMI</button>
+              </form>
+
+              <div id="bmiResultBox" style="margin-top:20px; padding:16px; background:var(--bg-input); border-radius:12px; display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:1.1rem; font-weight:700;">Resulting BMI: <span id="bmiScoreDisplay" style="color:var(--primary-600); font-size:1.4rem;">23.51</span></span>
+                  <span class="status-badge badge-normal" id="bmiCategoryBadge">Normal</span>
+                </div>
+                <p id="bmiHealthyRangeText" style="font-size:0.86rem; color:var(--text-muted); margin-bottom:8px;"></p>
+                <p id="bmiAdviceText" style="font-size:0.9rem; color:var(--text-main); line-height:1.4;"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CALCULATOR: BMR & Calorie Needs -->
+          <div class="tab-pane" id="tab-calc-bmr">
+            <div class="health-card" style="max-width:640px; margin:0 auto;">
+              <h3 style="margin-bottom:12px;">Basal Metabolic Rate (BMR) & Daily Calories</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">Calculates minimum caloric output and Total Daily Energy Expenditure (TDEE).</p>
+              <form id="calcBmrForm" onsubmit="event.preventDefault(); app.calculateBmr(document.getElementById('bmrHeight').value, document.getElementById('bmrWeight').value, document.getElementById('bmrAge').value, document.getElementById('bmrSex').value, document.getElementById('bmrActivity').value);">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <div class="form-group">
+                    <label class="form-label">Age</label>
+                    <input type="number" id="bmrAge" class="form-control" value="32" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Biological Sex</label>
+                    <select id="bmrSex" class="form-control">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Height (cm)</label>
+                    <input type="number" id="bmrHeight" class="form-control" value="178" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Weight (kg)</label>
+                    <input type="number" id="bmrWeight" class="form-control" value="74.5" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Activity Multiplier</label>
+                  <select id="bmrActivity" class="form-control">
+                    <option value="sedentary">Sedentary (Little or no workout)</option>
+                    <option value="light">Light (Exercise 1-3 days/week)</option>
+                    <option value="moderate" selected>Moderate (Exercise 3-5 days/week)</option>
+                    <option value="active">Active (Hard exercise 6-7 days/week)</option>
+                    <option value="very_active">Very Active (Physical athletic job)</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">Calculate Caloric Needs</button>
+              </form>
+
+              <div id="bmrResultBox" style="margin-top:20px; padding:16px; background:var(--bg-input); border-radius:12px; display:none;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+                  <div><strong>Basal BMR:</strong> <span id="bmrScore" style="color:var(--primary-600); font-weight:800;">1,710 kcal</span></div>
+                  <div><strong>Maintenance (TDEE):</strong> <span id="tdeeScore" style="color:var(--accent-600); font-weight:800;">2,650 kcal</span></div>
+                </div>
+                <div style="font-size:0.86rem; border-top:1px solid var(--border-subtle); padding-top:10px;">
+                  <div>• Mild Weight Loss (-0.25kg/wk): <strong id="calMildLoss">2,400 kcal</strong></div>
+                  <div>• Standard Weight Loss (-0.5kg/wk): <strong id="calLoss">2,150 kcal</strong></div>
+                  <div>• Mild Weight Gain (+0.25kg/wk): <strong id="calGain">2,900 kcal</strong></div>
+                </div>
+                <p id="bmrAdvice" style="font-size:0.86rem; color:var(--text-muted); margin-top:8px;"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CALCULATOR: Body Fat -->
+          <div class="tab-pane" id="tab-calc-fat">
+            <div class="health-card" style="max-width:640px; margin:0 auto;">
+              <h3 style="margin-bottom:12px;">U.S. Navy Body Fat Estimator</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">Estimates lean mass vs adipose tissue using circumferential measurements.</p>
+              <form id="calcFatForm" onsubmit="event.preventDefault(); app.calculateBodyFat(document.getElementById('fatSex').value, document.getElementById('fatWaist').value, document.getElementById('fatNeck').value, document.getElementById('fatHeight').value, document.getElementById('fatHip').value);">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <div class="form-group">
+                    <label class="form-label">Sex</label>
+                    <select id="fatSex" class="form-control" onchange="document.getElementById('hipGroup').style.display = this.value === 'female' ? 'block' : 'none';">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Height (cm)</label>
+                    <input type="number" id="fatHeight" class="form-control" value="178" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Waist Circumference (cm)</label>
+                    <input type="number" id="fatWaist" class="form-control" value="82" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Neck Circumference (cm)</label>
+                    <input type="number" id="fatNeck" class="form-control" value="38" required>
+                  </div>
+                </div>
+                <div class="form-group" id="hipGroup" style="display:none;">
+                  <label class="form-label">Hip Circumference (cm) - Female Only</label>
+                  <input type="number" id="fatHip" class="form-control" value="95">
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">Estimate Body Fat %</button>
+              </form>
+
+              <div id="bodyFatResultBox" style="margin-top:20px; padding:16px; background:var(--bg-input); border-radius:12px; display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:1.1rem; font-weight:700;">Body Fat: <span id="bodyFatScore" style="color:var(--primary-600); font-size:1.4rem;">17.2%</span></span>
+                  <span class="status-badge badge-normal" id="bodyFatCategory">Fitness</span>
+                </div>
+                <p id="bodyFatAdvice" style="font-size:0.9rem; color:var(--text-muted);"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CALCULATOR: Waist-to-Height Ratio -->
+          <div class="tab-pane" id="tab-calc-whtr">
+            <div class="health-card" style="max-width:640px; margin:0 auto;">
+              <h3 style="margin-bottom:12px;">Waist-to-Height Ratio (WHtR)</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">A clinically validated indicator of central visceral adiposity and cardiometabolic risk.</p>
+              <form onsubmit="event.preventDefault(); app.calculateWhtr(document.getElementById('whtrWaist').value, document.getElementById('whtrHeight').value);">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <div class="form-group">
+                    <label class="form-label">Waist Circumference (cm)</label>
+                    <input type="number" id="whtrWaist" class="form-control" value="80" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Height (cm)</label>
+                    <input type="number" id="whtrHeight" class="form-control" value="178" required>
+                  </div>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">Calculate WHtR</button>
+              </form>
+
+              <div id="whtrResultBox" style="margin-top:20px; padding:16px; background:var(--bg-input); border-radius:12px; display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:1.1rem; font-weight:700;">Ratio: <span id="whtrScore" style="color:var(--accent-600); font-size:1.4rem;">0.45</span></span>
+                  <span class="status-badge badge-normal" id="whtrCategory">Healthy</span>
+                </div>
+                <p id="whtrAdvice" style="font-size:0.9rem; color:var(--text-muted);"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CALCULATOR: Ideal Healthy Weight Range -->
+          <div class="tab-pane" id="tab-calc-ideal">
+            <div class="health-card" style="max-width:640px; margin:0 auto;">
+              <h3 style="margin-bottom:12px;">Healthy Weight Range Calculator</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">Calculates target boundaries based on BMI 18.5 – 24.9 and Devine Ideal Body Weight formula.</p>
+              <form onsubmit="event.preventDefault(); app.calculateHealthyWeight(document.getElementById('idealHeight').value, document.getElementById('idealSex').value);">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <div class="form-group">
+                    <label class="form-label">Height (cm)</label>
+                    <input type="number" id="idealHeight" class="form-control" value="178" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Biological Sex</label>
+                    <select id="idealSex" class="form-control">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">Compute Weight Range</button>
+              </form>
+
+              <div id="healthyWeightResultBox" style="margin-top:20px; padding:16px; background:var(--bg-input); border-radius:12px; display:none;">
+                <div style="margin-bottom:8px;">
+                  <strong>Recommended Range:</strong> <span id="healthyRangeScore" style="color:var(--primary-600); font-weight:800; font-size:1.2rem;">58.6 kg – 78.9 kg</span>
+                </div>
+                <div style="margin-bottom:8px;">
+                  <strong>Devine Ideal Body Weight:</strong> <span id="devineIdealWeight" style="color:var(--accent-600); font-weight:800;">73.0 kg</span>
+                </div>
+                <p id="healthyWeightAdvice" style="font-size:0.88rem; color:var(--text-muted);"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CALCULATOR: Nutritional Assessment -->
+          <div class="tab-pane" id="tab-calc-nutrition">
+            <div class="health-card" style="max-width:640px; margin:0 auto;">
+              <h3 style="margin-bottom:12px;">Nutritional Status Assessment</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">Evaluates dietary patterns, macronutrient balance, and risk of under- or over-nutrition.</p>
+              <form onsubmit="event.preventDefault(); app.submitNutritionalAssessment({
+                height_cm: document.getElementById('nutriHeight').value,
+                weight_kg: document.getElementById('nutriWeight').value,
+                meals_per_day: document.getElementById('nutriMeals').value,
+                fruit_veg_servings: document.getElementById('nutriVeg').value,
+                water_liters: document.getElementById('nutriWater').value,
+                fatigue_symptoms: document.getElementById('nutriFatigue').checked,
+                weight_loss_unintentional: document.getElementById('nutriLoss').checked
+              });">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <div class="form-group">
+                    <label class="form-label">Height (cm)</label>
+                    <input type="number" id="nutriHeight" class="form-control" value="178" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Weight (kg)</label>
+                    <input type="number" id="nutriWeight" class="form-control" value="74.5" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Meals per Day</label>
+                    <input type="number" id="nutriMeals" class="form-control" value="3" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Daily Fruit/Veg Servings</label>
+                    <input type="number" id="nutriVeg" class="form-control" value="4" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Daily Water (Liters)</label>
+                  <input type="number" id="nutriWater" class="form-control" value="2.5" step="0.5" required>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+                  <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem;">
+                    <input type="checkbox" id="nutriFatigue"> Frequent lethargy or unexplained fatigue
+                  </label>
+                  <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem;">
+                    <input type="checkbox" id="nutriLoss"> Unintentional rapid weight change in last 3 months
+                  </label>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">Evaluate Nutritional Status</button>
+              </form>
+
+              <div id="nutritionResultBox" style="margin-top:20px; padding:16px; background:var(--bg-input); border-radius:12px; display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <span style="font-weight:700;">Classification:</span>
+                  <span class="status-badge badge-normal" id="nutritionStatusBadge">Normal Weight</span>
+                </div>
+                <h5 style="margin-bottom:6px; font-size:0.92rem;">Clinical Recommendations:</h5>
+                <ul id="nutritionRecommendationsList" style="padding-left:18px; font-size:0.88rem; color:var(--text-muted); line-height:1.5;"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- MODULE: Health Risk Screening -->
+          <div class="tab-pane" id="tab-calc-risk">
+            <div class="health-card" style="max-width:680px; margin:0 auto;">
+              <h3 style="margin-bottom:8px; color:var(--danger-500);" data-i18n="risk_screening">Health Risk Self-Screening</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:16px;">Early detection tools for diabetes, cardiovascular disease, hypertension, and lifestyle stressors.</p>
+
+              <div class="form-group">
+                <label class="form-label">Select Risk Screening Type</label>
+                <select id="riskScreeningType" class="form-control" onchange="app.switchRiskForm(this.value)">
+                  <option value="Diabetes Risk">Type 2 Diabetes Risk (ADA Algorithm)</option>
+                  <option value="Heart Disease Risk">Heart Disease / Coronary Risk</option>
+                  <option value="Hypertension Risk">Hypertension Predisposition</option>
+                  <option value="Lifestyle Risk">Comprehensive Lifestyle Risk</option>
+                </select>
+              </div>
+
+              <!-- Questionnaire Containers -->
+              <div id="riskFormQuestions" style="margin-bottom:16px;">
+                <!-- Diabetes Questions -->
+                <div id="qDiabetes">
+                  <div class="form-group">
+                    <label class="form-label">Age Category</label>
+                    <select id="dbAge" class="form-control">
+                      <option value="under40">&lt; 40 years old</option>
+                      <option value="40-49">40 – 49 years old</option>
+                      <option value="50-59">50 – 59 years old</option>
+                      <option value="60+">60+ years old</option>
+                    </select>
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:8px; font-size:0.9rem;">
+                    <label><input type="checkbox" id="dbFamily"> Immediate family member (parent/sibling) diagnosed with diabetes</label>
+                    <label><input type="checkbox" id="dbBp"> Diagnosed with elevated blood pressure</label>
+                    <label><input type="checkbox" id="dbSedentary"> Sedentary lifestyle (less than 30 mins workout/week)</label>
+                    <label><input type="checkbox" id="dbOverweight"> BMI currently in overweight or obese range</label>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn-primary" style="width:100%;" onclick="app.executeCurrentRiskScreening()">
+                Run Risk Screening
+              </button>
+
+              <div id="riskResultBox" style="margin-top:20px; padding:18px; background:var(--bg-input); border-radius:12px; display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                  <h4 id="riskResultTitle">Screening Result</h4>
+                  <span class="status-badge badge-normal" id="riskLevelBadge">Low Risk</span>
+                </div>
+                <div id="riskScoreNumber" style="font-size:0.92rem; font-weight:700; color:var(--primary-600); margin-bottom:8px;"></div>
+                <p id="riskRecommendationsText" style="font-size:0.9rem; line-height:1.5; color:var(--text-main);"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           4. VIEW: HEALTH LIBRARY (Medical Education)
+           ==================================================== -->
+      <section class="view-panel" id="view-library">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="library_title">Medical Knowledge Library</h2>
+            <p style="font-size:0.88rem; color:var(--text-muted);">Peer-reviewed medical articles, clinical insights, and health guidelines.</p>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div style="margin-bottom:16px;">
+          <input type="text" id="librarySearchInput" class="form-control" data-i18n="search_library" placeholder="Search health topics, articles, and symptoms..." oninput="app.loadArticles(window.currentLibraryCategory || 'All', this.value)">
+        </div>
+
+        <!-- Category Filter Chips -->
+        <div class="library-filters">
+          <button class="filter-chip active" onclick="app.filterArticles('All', this)">All Topics</button>
+          <button class="filter-chip" onclick="app.filterArticles('Nutrition', this)">Nutrition</button>
+          <button class="filter-chip" onclick="app.filterArticles('Exercise', this)">Exercise</button>
+          <button class="filter-chip" onclick="app.filterArticles('Mental Wellness', this)">Mental Wellness</button>
+          <button class="filter-chip" onclick="app.filterArticles('First Aid', this)">First Aid</button>
+          <button class="filter-chip" onclick="app.filterArticles('Healthy Lifestyle', this)">Healthy Lifestyle</button>
+          <button class="filter-chip" onclick="app.filterArticles('Disease Prevention', this)">Disease Prevention</button>
+          <button class="filter-chip" onclick="app.filterArticles('Blood Pressure Information', this)">Blood Pressure</button>
+          <button class="filter-chip" onclick="app.filterArticles('BMI Information', this)">BMI Guidelines</button>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="articles-grid" id="articlesGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- ====================================================
+           5. VIEW: PROFILE & SETTINGS
+           ==================================================== -->
+      <section class="view-panel" id="view-profile">
+        <div class="section-header">
+          <h2 data-i18n="profile_title">Health Profile & Settings</h2>
+          <button class="btn-secondary text-danger" onclick="app.logout()">Sign Out</button>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr; gap:24px;">
+          <!-- Profile Form -->
+          <div class="health-card">
+            <h3 style="margin-bottom:16px;">Personal Information</h3>
+            <form onsubmit="app.saveProfile(event)">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                <div class="form-group">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" id="profFullName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" id="profEmail" class="form-control" disabled style="opacity:0.7;">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Age</label>
+                  <input type="number" id="profAge" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Sex</label>
+                  <select id="profSex" class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Height (cm)</label>
+                  <input type="number" id="profHeight" class="form-control" step="0.5">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Weight (kg)</label>
+                  <input type="number" id="profWeight" class="form-control" step="0.1">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Blood Type</label>
+                  <select id="profBloodType" class="form-control">
+                    <option value="Unknown">Unknown</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Target Weight (kg)</label>
+                  <input type="number" id="profTargetWeight" class="form-control" step="0.5">
+                </div>
+              </div>
+
+              <h4 style="margin:20px 0 10px 0; border-top:1px solid var(--border-subtle); padding-top:16px;">Emergency Contact</h4>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px;">
+                <div class="form-group">
+                  <label class="form-label">Contact Name</label>
+                  <input type="text" id="profEmergencyName" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Relationship</label>
+                  <input type="text" id="profEmergencyRelation" class="form-control" placeholder="e.g. Spouse / Parent">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" id="profEmergencyPhone" class="form-control">
+                </div>
+              </div>
+
+              <h4 style="margin:20px 0 10px 0; border-top:1px solid var(--border-subtle); padding-top:16px;">Health Goals</h4>
+              <div class="form-group">
+                <textarea id="profGoals" class="form-control" rows="2" placeholder="Describe your wellness objectives..."></textarea>
+              </div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:12px; margin-bottom:16px;">
+                <div class="form-group">
+                  <label class="form-label">Daily Water Goal (mL)</label>
+                  <input type="number" id="profTargetWater" class="form-control" value="2500">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Daily Step Goal</label>
+                  <input type="number" id="profTargetSteps" class="form-control" value="10000">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Sleep Target (Hours)</label>
+                  <input type="number" id="profTargetSleep" class="form-control" value="8" step="0.5">
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary">Save Profile Settings</button>
+            </form>
+          </div>
+
+          <!-- Preferences & Compliance Section -->
+          <div class="health-card">
+            <h3 style="margin-bottom:14px;">App Settings & Preferences</h3>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-bottom:20px;">
+              <div>
+                <label class="form-label" data-i18n="language">Language</label>
+                <select class="form-control" onchange="app.setLanguage(this.value)">
+                  <option value="en">English (US)</option>
+                  <option value="es">Español</option>
+                  <option value="fr">Français</option>
+                  <option value="de">Deutsch</option>
+                  <option value="tl">Tagalog (Filipino)</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label" data-i18n="font_size">Font Size</label>
+                <select class="form-control" onchange="app.setFontScale(this.value)">
+                  <option value="normal">Standard (100%)</option>
+                  <option value="large">Large Text (115%)</option>
+                  <option value="small">Compact (90%)</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">Display Theme</label>
+                <button class="btn-secondary" style="width:100%; display:inline-flex; align-items:center; justify-content:center; gap:8px;" onclick="app.toggleTheme()">
+                  <svg class="minimal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                  <span>Toggle Dark / Light Mode</span>
+                </button>
+              </div>
+              <div>
+                <label class="form-label">Visual Accessibility</label>
+                <button class="btn-secondary" style="width:100%; display:inline-flex; align-items:center; justify-content:center; gap:8px;" onclick="app.toggleHighContrast()">
+                  <svg class="minimal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <span>Toggle High Contrast</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap; border-top:1px solid var(--border-subtle); padding-top:16px;">
+              <button class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;" onclick="app.generatePdfReport()">
+                <svg class="minimal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <span data-i18n="export_pdf">Export Medical PDF Report</span>
+              </button>
+              <button class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;" onclick="app.downloadHistoryCsv()">
+                <svg class="minimal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span data-i18n="download_csv">Download Health CSV History</span>
+              </button>
+              <button class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;" onclick="app.openModal('privacyModal')">
+                <svg class="minimal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span data-i18n="privacy_policy">Data Privacy & HIPAA / GDPR</span>
+              </button>
+              <button class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;" onclick="app.requestNotificationPermission()">
+                <svg class="minimal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                <span>Enable Browser Reminders</span>
+              </button>
+              <button class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px; color:var(--danger-500); border-color:var(--danger-500);" onclick="app.logout()">
+                <svg class="minimal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span>Sign Out of Account</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           6. VIEW: ADMIN PANEL (User Management & Publishing)
+           ==================================================== -->
+      <section class="view-panel" id="view-admin">
+        <div class="section-header">
+          <div>
+            <h2>Admin Clinical Command Center</h2>
+            <p style="font-size:0.88rem; color:var(--text-muted);">Manage platform users, publish health content, and inspect vital statistics.</p>
+          </div>
+        </div>
+
+        <!-- Admin Overview Metric Cards -->
+        <div class="grid-cards-6" style="margin-bottom:20px;">
+          <div class="health-card">
+            <h4>Total Registered Users</h4>
+            <div class="card-big-num" id="adminStatTotalUsers">0</div>
+          </div>
+          <div class="health-card">
+            <h4>Active Patients</h4>
+            <div class="card-big-num" id="adminStatActiveUsers" style="color:var(--accent-500);">0</div>
+          </div>
+          <div class="health-card">
+            <h4>Total BMI Checks</h4>
+            <div class="card-big-num" id="adminStatBmiLogs">0</div>
+          </div>
+          <div class="health-card">
+            <h4>Total Blood Pressure Logs</h4>
+            <div class="card-big-num" id="adminStatBpLogs">0</div>
+          </div>
+        </div>
+
+        <!-- User Management Table -->
+        <div class="health-card" style="margin-bottom:24px;">
+          <h3 style="margin-bottom:12px;">Patient & User Management</h3>
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Patient Name & Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Activity Records</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminUsersTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Content Management (Publish Article & Tip) -->
+        <div style="display:grid; grid-template-columns:1fr; gap:20px;">
+          <!-- Publish Article Form -->
+          <div class="health-card">
+            <h3 style="margin-bottom:12px;">Publish Medical Article</h3>
+            <form id="publishArticleForm" onsubmit="app.publishArticle(event)">
+              <div style="display:grid; grid-template-columns:2fr 1fr; gap:12px;">
+                <div class="form-group">
+                  <label class="form-label">Article Title</label>
+                  <input type="text" id="newArticleTitle" class="form-control" required placeholder="e.g. Heart Rate Recovery Protocols">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Category</label>
+                  <select id="newArticleCategory" class="form-control">
+                    <option value="Nutrition">Nutrition</option>
+                    <option value="Exercise">Exercise</option>
+                    <option value="Mental Wellness">Mental Wellness</option>
+                    <option value="First Aid">First Aid</option>
+                    <option value="Healthy Lifestyle">Healthy Lifestyle</option>
+                    <option value="Disease Prevention">Disease Prevention</option>
+                    <option value="Blood Pressure Information">Blood Pressure Information</option>
+                    <option value="BMI Information">BMI Information</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Short Description</label>
+                <input type="text" id="newArticleDesc" class="form-control" required placeholder="Concise summary for article cards...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Full Article Markdown Content</label>
+                <textarea id="newArticleContent" class="form-control" rows="5" required placeholder="Use ### Headings and bullet points..."></textarea>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <div class="form-group">
+                  <label class="form-label">Hero Image URL</label>
+                  <input type="url" id="newArticleImg" class="form-control" placeholder="https://images.unsplash.com/...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Clinical Citations / References</label>
+                  <input type="text" id="newArticleRefs" class="form-control" placeholder="e.g. WHO Guidelines, AHA 2026">
+                </div>
+              </div>
+              <button type="submit" class="btn-primary">Publish to Health Library</button>
+            </form>
+          </div>
+
+          <!-- Publish Health Tip Form -->
+          <div class="health-card">
+            <h3 style="margin-bottom:12px;">Publish Daily Health Tip</h3>
+            <form id="publishTipForm" onsubmit="app.publishTip(event)">
+              <div class="form-group">
+                <label class="form-label">Health Tip Text</label>
+                <textarea id="newTipText" class="form-control" rows="2" required placeholder="Actionable evidence-based tip..."></textarea>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div class="form-group" style="margin:0; width:200px;">
+                  <select id="newTipCategory" class="form-control">
+                    <option value="Hydration">Hydration</option>
+                    <option value="Cardiovascular">Cardiovascular</option>
+                    <option value="Sleep">Sleep</option>
+                    <option value="Nutrition">Nutrition</option>
+                    <option value="Fitness">Fitness</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn-primary">Publish Daily Tip</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================================
+       FIXED BOTTOM NAVIGATION BAR (Mobile-First Requirement)
+       ======================================================== -->
+  <nav class="bottom-nav-bar" id="mobileBottomNav">
+    <button class="bottom-nav-item active" data-view-target="home" onclick="app.switchView('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span data-i18n="nav_home">Home</span>
+    </button>
+    <button class="bottom-nav-item" data-view-target="tracker" onclick="app.switchView('tracker')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"></path></svg>
+      <span data-i18n="nav_tracker">Tracker</span>
+    </button>
+    <button class="bottom-nav-item" data-view-target="assessments" onclick="app.switchView('assessments')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"></path></svg>
+      <span data-i18n="nav_assessments">Assess</span>
+    </button>
+    <button class="bottom-nav-item" data-view-target="library" onclick="app.switchView('library')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 6h10M6 10h10"></path></svg>
+      <span data-i18n="nav_library">Library</span>
+    </button>
+    <button class="bottom-nav-item" data-view-target="profile" onclick="app.switchView('profile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      <span data-i18n="nav_profile">Profile</span>
+    </button>
+  </nav>
+  </div> <!-- /#mainAppShell -->
+
+  <!-- ========================================================
+       MODALS & DIALOGS
+       ======================================================== -->
+
+  <!-- 1. AUTH MODAL (Sign In, Sign Up, Forgot Password) -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Welcome to DIGIPULSE</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('authModal')">&times;</button>
+      </div>
+    </div>
+
+      <!-- Sign In Form -->
+      <div id="signInContainer">
+        <form onsubmit="event.preventDefault(); app.login(document.getElementById('loginEmail').value, document.getElementById('loginPass').value, document.getElementById('loginRemember').checked);">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="loginEmail" class="form-control" value="mark@digipulse.health" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="loginPass" class="form-control" value="password123" required>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <label style="font-size:0.85rem; display:flex; align-items:center; gap:6px;">
+              <input type="checkbox" id="loginRemember" checked> Remember Me
+            </label>
+            <a href="#" style="font-size:0.85rem;" onclick="document.getElementById('signInContainer').style.display='none'; document.getElementById('forgotPassContainer').style.display='block'; return false;">
+              Forgot Password?
+            </a>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%; margin-bottom:12px;">Sign In to DigiPulse</button>
+          <div style="text-align:center; font-size:0.88rem; color:var(--text-muted);">
+            Don't have an account? <a href="#" onclick="document.getElementById('signInContainer').style.display='none'; document.getElementById('signUpContainer').style.display='block'; return false;">Create one now</a>
+          </div>
+        </form>
+      </div>
+
+      <!-- Sign Up Form -->
+      <div id="signUpContainer" style="display:none;">
+        <form onsubmit="event.preventDefault(); app.register(
+          document.getElementById('regName').value,
+          document.getElementById('regEmail').value,
+          document.getElementById('regPass').value,
+          document.getElementById('regConfirmPass').value,
+          document.getElementById('regTerms').checked
+        );">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="regName" class="form-control" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="regEmail" class="form-control" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="regPass" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" id="regConfirmPass" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label style="font-size:0.84rem; display:flex; align-items:center; gap:6px;">
+              <input type="checkbox" id="regTerms" required> I agree to the <a href="#" onclick="app.openModal('privacyModal'); return false;">Terms and Privacy Conditions</a>
+            </label>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%; margin-bottom:12px;">Create Account</button>
+          <div style="text-align:center; font-size:0.88rem; color:var(--text-muted);">
+            Already have an account? <a href="#" onclick="document.getElementById('signUpContainer').style.display='none'; document.getElementById('signInContainer').style.display='block'; return false;">Sign In</a>
+          </div>
+        </form>
+      </div>
+
+      <!-- Forgot Password Form -->
+      <div id="forgotPassContainer" style="display:none;">
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">Enter your email to receive interactive password reset instructions.</p>
+        <form onsubmit="event.preventDefault(); app.showToast('Reset link has been dispatched to your email!', 'success'); document.getElementById('forgotPassContainer').style.display='none'; document.getElementById('signInContainer').style.display='block';">
+          <div class="form-group">
+            <label class="form-label">Registered Email</label>
+            <input type="email" id="forgotEmail" class="form-control" required>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%; margin-bottom:10px;">Send Reset Link</button>
+          <button type="button" class="btn-secondary" style="width:100%;" onclick="document.getElementById('forgotPassContainer').style.display='none'; document.getElementById('signInContainer').style.display='block';">Back to Sign In</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. QUICK RECORD BLOOD PRESSURE MODAL -->
+  <div class="modal-overlay" id="bpModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Record Blood Pressure</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('bpModal')">&times;</button>
+      </div>
+      <form onsubmit="event.preventDefault(); (async () => {
+        const sys = document.getElementById('modalBpSys').value;
+        const dia = document.getElementById('modalBpDia').value;
+        const pulse = document.getElementById('modalBpPulse').value;
+        const notes = document.getElementById('modalBpNotes').value;
+        const res = await fetch('/api/tracking/bp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${app.token}` },
+          body: JSON.stringify({ systolic: sys, diastolic: dia, pulse, notes })
+        });
+        const json = await res.json();
+        if(json.success) {
+          app.showToast('Blood pressure recorded successfully.', 'success');
+          app.closeModal('bpModal');
+          app.loadDashboard();
+          app.loadTrackerData();
+        }
+      })()">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label">Systolic (Top / mmHg)</label>
+            <input type="number" id="modalBpSys" class="form-control" value="118" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Diastolic (Bottom / mmHg)</label>
+            <input type="number" id="modalBpDia" class="form-control" value="78" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pulse (Optional / bpm)</label>
+          <input type="number" id="modalBpPulse" class="form-control" value="72">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes / Context</label>
+          <input type="text" id="modalBpNotes" class="form-control" placeholder="e.g. Resting, morning after breakfast">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Save Reading</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. QUICK LOG WEIGHT MODAL -->
+  <div class="modal-overlay" id="weightModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Log Weight</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('weightModal')">&times;</button>
+      </div>
+      <form onsubmit="event.preventDefault(); (async () => {
+        const w = document.getElementById('modalWeightVal').value;
+        const notes = document.getElementById('modalWeightNotes').value;
+        const res = await fetch('/api/tracking/weight', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${app.token}` },
+          body: JSON.stringify({ weight_kg: w, notes })
+        });
+        const json = await res.json();
+        if(json.success) {
+          app.showToast('Weight recorded successfully.', 'success');
+          app.closeModal('weightModal');
+          app.loadDashboard();
+          app.loadTrackerData();
+        }
+      })()">
+        <div class="form-group">
+          <label class="form-label">Weight (kg)</label>
+          <input type="number" id="modalWeightVal" class="form-control" step="0.1" value="74.5" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <input type="text" id="modalWeightNotes" class="form-control" placeholder="e.g. Fasted morning check-in">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Save Weight</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. RECORD HEART RATE MODAL -->
+  <div class="modal-overlay" id="hrModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Record Heart Rate</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('hrModal')">&times;</button>
+      </div>
+      <form onsubmit="event.preventDefault(); (async () => {
+        const rate = document.getElementById('modalHrVal').value;
+        const ctx = document.getElementById('modalHrCtx').value;
+        const notes = document.getElementById('modalHrNotes').value;
+        const res = await fetch('/api/tracking/heart-rate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${app.token}` },
+          body: JSON.stringify({ heart_rate: rate, context: ctx, notes })
+        });
+        const json = await res.json();
+        if(json.success) {
+          app.showToast('Heart rate logged successfully.', 'success');
+          app.closeModal('hrModal');
+          app.loadDashboard();
+          app.loadTrackerData();
+        }
+      })()">
+        <div class="form-group">
+          <label class="form-label">Resting Heart Rate (bpm)</label>
+          <input type="number" id="modalHrVal" class="form-control" value="70" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Measurement Context</label>
+          <select id="modalHrCtx" class="form-control">
+            <option value="Resting">Resting (Morning)</option>
+            <option value="Post-Workout">Post-Workout Recovery</option>
+            <option value="Midday">Midday Normal</option>
+            <option value="Stressful">Stressful Episode</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <input type="text" id="modalHrNotes" class="form-control" placeholder="e.g. Measured with pulse oximeter">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Save Heart Rate</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. ACTIVITY MODAL -->
+  <div class="modal-overlay" id="activityModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Log Physical Activity</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('activityModal')">&times;</button>
+      </div>
+      <form onsubmit="event.preventDefault(); (async () => {
+        const steps = document.getElementById('modalActSteps').value;
+        const mins = document.getElementById('modalActMins').value;
+        const cals = document.getElementById('modalActCals').value;
+        const type = document.getElementById('modalActType').value;
+        const res = await fetch('/api/tracking/activity', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${app.token}` },
+          body: JSON.stringify({ steps, active_minutes: mins, calories_burned: cals, activity_type: type })
+        });
+        const json = await res.json();
+        if(json.success) {
+          app.showToast('Activity logged successfully.', 'success');
+          app.closeModal('activityModal');
+          app.loadDashboard();
+          app.loadTrackerData();
+        }
+      })()">
+        <div class="form-group">
+          <label class="form-label">Activity Type</label>
+          <select id="modalActType" class="form-control">
+            <option value="Walking">Walking / Jogging</option>
+            <option value="Gym & Resistance">Gym & Resistance Training</option>
+            <option value="Cycling">Cycling</option>
+            <option value="Swimming">Swimming</option>
+            <option value="Yoga & Stretching">Yoga & Stretching</option>
+            <option value="HIIT">HIIT / Cardio</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label">Steps (if tracked)</label>
+            <input type="number" id="modalActSteps" class="form-control" value="2500">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Active Minutes</label>
+            <input type="number" id="modalActMins" class="form-control" value="30" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Estimated Calories Burned</label>
+          <input type="number" id="modalActCals" class="form-control" value="220">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Record Activity</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. SLEEP MODAL -->
+  <div class="modal-overlay" id="sleepModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Log Sleep Session</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('sleepModal')">&times;</button>
+      </div>
+      <form onsubmit="event.preventDefault(); (async () => {
+        const hours = document.getElementById('modalSleepHours').value;
+        const quality = document.getElementById('modalSleepQuality').value;
+        const bedtime = document.getElementById('modalSleepBed').value;
+        const wake = document.getElementById('modalSleepWake').value;
+        const notes = document.getElementById('modalSleepNotes').value;
+        const res = await fetch('/api/tracking/sleep', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${app.token}` },
+          body: JSON.stringify({ sleep_hours: hours, sleep_quality: quality, bedtime, wake_time: wake, notes })
+        });
+        const json = await res.json();
+        if(json.success) {
+          app.showToast('Sleep session logged successfully.', 'success');
+          app.closeModal('sleepModal');
+          app.loadTrackerData();
+        }
+      })()">
+        <div class="form-group">
+          <label class="form-label">Sleep Duration (Hours)</label>
+          <input type="number" id="modalSleepHours" class="form-control" step="0.1" value="7.5" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Perceived Sleep Quality</label>
+          <select id="modalSleepQuality" class="form-control">
+            <option value="Excellent">Excellent (Restorative, no awakenings)</option>
+            <option value="Good" selected>Good (Slept well)</option>
+            <option value="Fair">Fair (Slightly disrupted)</option>
+            <option value="Poor">Poor (Restless or insufficient)</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label">Bedtime</label>
+            <input type="time" id="modalSleepBed" class="form-control" value="23:00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Wake Time</label>
+            <input type="time" id="modalSleepWake" class="form-control" value="06:30">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <input type="text" id="modalSleepNotes" class="form-control" placeholder="e.g. Read for 20 mins before sleeping">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Save Sleep Session</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7. ARTICLE READER MODAL -->
+  <div class="modal-overlay" id="articleModal">
+    <div class="modal-window" style="max-width:720px;">
+      <div class="modal-header">
+        <div>
+          <span class="article-category-badge" id="articleModalCategory">Nutrition</span>
+          <h3 id="articleModalTitle" style="margin-top:4px;">Article Title</h3>
+        </div>
+        <button class="modal-close-btn" onclick="app.closeModal('articleModal')">&times;</button>
+      </div>
+      <div style="width:100%; height:240px; border-radius:12px; overflow:hidden; margin-bottom:14px;">
+        <img id="articleModalImage" src="" alt="Article cover" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <div style="font-size:0.82rem; color:var(--text-muted);" id="articleModalMeta"></div>
+        <button class="btn-secondary" style="padding:4px 10px; font-size:0.8rem; display:inline-flex; align-items:center; gap:6px;" onclick="app.speakArticleContent()">
+          <svg class="minimal-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <span>Listen (TTS)</span>
+        </button>
+      </div>
+      <div id="articleModalContent" style="line-height:1.65; color:var(--text-main); font-size:0.95rem; margin-bottom:20px;"></div>
+      <div style="border-top:1px solid var(--border-subtle); padding-top:10px; font-size:0.82rem; color:var(--text-muted);">
+        <strong>Scientific References:</strong> <span id="articleModalReferences"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. NOTIFICATIONS DRAWER / MODAL -->
+  <div class="modal-overlay" id="notificationsModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Health Notifications & Reminders</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('notificationsModal')">&times;</button>
+      </div>
+      <div style="display:flex; justify-content:space-between; margin-bottom:14px;">
+        <span style="font-size:0.85rem; color:var(--text-muted);">Personalized clinical alerts</span>
+        <button class="btn-secondary" style="padding:4px 10px; font-size:0.8rem;" onclick="app.markAllNotificationsRead()">Mark all as read</button>
+      </div>
+      <div id="notificationsList" style="max-height:360px; overflow-y:auto;">
+        <!-- Dynamically rendered -->
+      </div>
+      <div style="margin-top:16px; border-top:1px solid var(--border-subtle); padding-top:12px;">
+        <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-bottom:8px;">TEST INSTANT REMINDERS:</div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="btn-secondary" style="font-size:0.78rem; padding:4px 8px; display:inline-flex; align-items:center; gap:5px;" onclick="app.triggerReminder('Water')">
+            <svg class="minimal-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg> Water
+          </button>
+          <button class="btn-secondary" style="font-size:0.78rem; padding:4px 8px; display:inline-flex; align-items:center; gap:5px;" onclick="app.triggerReminder('Exercise')">
+            <svg class="minimal-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Move
+          </button>
+          <button class="btn-secondary" style="font-size:0.78rem; padding:4px 8px; display:inline-flex; align-items:center; gap:5px;" onclick="app.triggerReminder('Blood Pressure')">
+            <svg class="minimal-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> BP Check
+          </button>
+          <button class="btn-secondary" style="font-size:0.78rem; padding:4px 8px; display:inline-flex; align-items:center; gap:5px;" onclick="app.triggerReminder('Sleep')">
+            <svg class="minimal-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Sleep
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. PRINTABLE CLINICAL PDF REPORT MODAL -->
+  <div class="modal-overlay" id="reportModal">
+    <div class="modal-window" style="max-width:800px;">
+      <div class="modal-header">
+        <h3>Medical Health Progress Report</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('reportModal')">&times;</button>
+      </div>
+      <div id="printableReportContent" class="printable-report" style="background:#ffffff; color:#0f172a; padding:20px; border-radius:8px; border:1px solid #e2e8f0;">
+        <!-- Populated dynamically -->
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:16px;">
+        <button class="btn-secondary" onclick="app.closeModal('reportModal')">Close</button>
+        <button class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;" onclick="app.printReport()">
+          <svg class="minimal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <span>Print / Save as PDF</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. DATA PRIVACY & COMPLIANCE MODAL -->
+  <div class="modal-overlay" id="privacyModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Data Privacy & HIPAA / GDPR Compliance</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('privacyModal')">&times;</button>
+      </div>
+      <div style="font-size:0.9rem; line-height:1.55; color:var(--text-main); margin-bottom:16px;">
+        <p><strong>1. Privacy Principle:</strong> At DIGIPULSE, your personal health information (PHI) is protected with strict encryption, local storage protections, and role-based access.</p>
+        <p style="margin-top:8px;"><strong>2. HIPAA & GDPR Alignment:</strong> You retain complete autonomy over your health records. You can export your full medical history at any time or request account erasure.</p>
+        <p style="margin-top:8px;"><strong>3. No Third-Party Reselling:</strong> DIGIPULSE does not monetize or distribute your biometric records, blood pressure entries, or metabolic logs to advertisers or insurance carriers.</p>
+      </div>
+      <button class="btn-primary" style="width:100%;" onclick="app.closeModal('privacyModal')">I Understand</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    // Helper handlers for library filtering and risk forms
+    function filterArticles(cat, btn) {
+      window.currentLibraryCategory = cat;
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      const search = document.getElementById('librarySearchInput')?.value || '';
+      app.loadArticles(cat, search);
+    }
+    app.filterArticles = filterArticles;
+
+    app.switchRiskForm = function(type) {
+      const container = document.getElementById('riskFormQuestions');
+      if (type === 'Diabetes Risk') {
+        container.innerHTML = `
+          <div class="form-group">
+            <label class="form-label">Age Category</label>
+            <select id="dbAge" class="form-control">
+              <option value="under40">&lt; 40 years old</option>
+              <option value="40-49">40 – 49 years old</option>
+              <option value="50-59">50 – 59 years old</option>
+              <option value="60+">60+ years old</option>
+            </select>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; font-size:0.9rem;">
+            <label><input type="checkbox" id="dbFamily"> Immediate family member diagnosed with diabetes</label>
+            <label><input type="checkbox" id="dbBp"> Diagnosed with high blood pressure</label>
+            <label><input type="checkbox" id="dbSedentary"> Sedentary lifestyle (less than 30 mins workout/wk)</label>
+            <label><input type="checkbox" id="dbOverweight"> BMI currently in overweight or obese range</label>
+          </div>
+        `;
+      } else if (type === 'Heart Disease Risk') {
+        container.innerHTML = `
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:0.9rem;">
+            <label><input type="checkbox" id="hdAge"> Age over 50 years old</label>
+            <label><input type="checkbox" id="hdSmoker"> Current smoker or regular nicotine vape user</label>
+            <label><input type="checkbox" id="hdChol"> Diagnosed with elevated LDL cholesterol</label>
+            <label><input type="checkbox" id="hdBp"> Systolic blood pressure consistently over 130 mmHg</label>
+            <label><input type="checkbox" id="hdSedentary"> Sedentary occupational routine</label>
+            <label><input type="checkbox" id="hdFamily"> Family history of premature coronary event</label>
+          </div>
+        `;
+      } else if (type === 'Hypertension Risk') {
+        container.innerHTML = `
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:0.9rem;">
+            <label><input type="checkbox" id="htSodium"> Regular intake of high-sodium canned or fast foods</label>
+            <label><input type="checkbox" id="htStress"> Frequently experience elevated work or life stress</label>
+            <label><input type="checkbox" id="htFamily"> One or both parents diagnosed with hypertension</label>
+            <label><input type="checkbox" id="htAlcohol"> Regular consumption of alcohol (>2 drinks daily)</label>
+            <label><input type="checkbox" id="htOverweight"> Excess body weight or abdominal adiposity</label>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:0.9rem;">
+            <label><input type="checkbox" id="lsSleep"> Less than 6 hours of sleep on average</label>
+            <label><input type="checkbox" id="lsExercise"> Under 30 minutes of intentional cardio per week</label>
+            <label><input type="checkbox" id="lsStress"> Chronic mental exhaustion or burnout</label>
+            <label><input type="checkbox" id="lsDiet"> Ultra-processed foods comprise more than 40% of diet</label>
+            <label><input type="checkbox" id="lsSmoke"> Smoking, vaping, or frequent binge drinking</label>
+          </div>
+        `;
+      }
+    };
+
+    app.executeCurrentRiskScreening = function() {
+      const type = document.getElementById('riskScreeningType').value;
+      let answers = {};
+      if (type === 'Diabetes Risk') {
+        answers = {
+          ageGroup: document.getElementById('dbAge')?.value,
+          sex: app.profile?.sex || 'male',
+          familyHistory: document.getElementById('dbFamily')?.checked,
+          highBp: document.getElementById('dbBp')?.checked,
+          physicallyActive: !document.getElementById('dbSedentary')?.checked,
+          bmiCategory: document.getElementById('dbOverweight')?.checked ? 'Overweight' : 'Normal'
+        };
+      } else if (type === 'Heart Disease Risk') {
+        answers = {
+          ageOver50: document.getElementById('hdAge')?.checked,
+          smoker: document.getElementById('hdSmoker')?.checked,
+          highCholesterol: document.getElementById('hdChol')?.checked,
+          highBp: document.getElementById('hdBp')?.checked,
+          sedentary: document.getElementById('hdSedentary')?.checked,
+          familyCardiac: document.getElementById('hdFamily')?.checked
+        };
+      } else if (type === 'Hypertension Risk') {
+        answers = {
+          highSodium: document.getElementById('htSodium')?.checked,
+          stressLevels: document.getElementById('htStress')?.checked ? 'high' : 'low',
+          familyHypertension: document.getElementById('htFamily')?.checked,
+          excessAlcohol: document.getElementById('htAlcohol')?.checked,
+          overweight: document.getElementById('htOverweight')?.checked
+        };
+      } else {
+        answers = {
+          sleepHoursUnder6: document.getElementById('lsSleep')?.checked,
+          exerciseUnder30m: document.getElementById('lsExercise')?.checked,
+          highStress: document.getElementById('lsStress')?.checked,
+          poorDiet: document.getElementById('lsDiet')?.checked,
+          smokingOrVaping: document.getElementById('lsSmoke')?.checked
+        };
+      }
+      app.submitRiskScreening(type, answers);
+    };
+  </script>
+</body>
+</html>
